@@ -1,30 +1,25 @@
-class BankAccount:
-    def __init__(self, account_number, account_holder, initial_balance=0.0):
-        self.__account_number = account_number
-        self.__account_holder = account_holder
-        self.__account_balance = initial_balance
+class Student:
+    def __init__(self, name, roll_number, cgpa):
+        self.name = name
+        self.roll_number = roll_number
+        self.cgpa = cgpa
 
-    def deposit(self, amount):
-        if amount > 0:
-            self.__account_balance += amount
-            return f"Deposited ${amount}. New balance is ${self.__account_balance}"
-        else:
-            return "Invalid deposit amount."
+def sort_students(student_list):
+    # Sort the student_list based on CGPA in descending order
+    sorted_students = sorted(student_list, key=lambda student: student.cgpa, reverse=True)
+    return sorted_students
 
-    def withdraw(self, amount):
-        if amount > 0 and amount <= self.__account_balance:
-            self.__account_balance -= amount
-            return f"Withdrew ${amount}. New balance is ${self.__account_balance}"
-        else:
-            return "Invalid withdrawal amount or insufficient funds."
+# Create a list of student objects
+students = [
+    Student("Alice", "101", 3.8),
+    Student("Bob", "102", 3.9),
+    Student("Charlie", "103", 3.7),
+    Student("David", "104", 4.0),
+]
 
-    def display_balance(self):
-        return f"Account Number: {self.__account_number}\nAccount Holder: {self.__account_holder}\nAccount Balance: ${self.__account_balance}"
+# Test the sort_students function
+sorted_students = sort_students(students)
 
-# Create an instance of the BankAccount class
-account = BankAccount("123456", "John Doe", 1000.0)
-
-# Test deposit and withdrawal functionality
-print(account.deposit(500))  # Deposit $500
-print(account.withdraw(200))  # Withdraw $200
-print(account.display_balance())  # Display the account balance
+# Print the sorted list
+for student in sorted_students:
+    print(f"Name: {student.name}, Roll Number: {student.roll_number}, CGPA: {student.cgpa}")
